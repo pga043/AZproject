@@ -1,0 +1,63 @@
+all_paths_new = []
+all_paths_new.clear()
+cutoff = 0.4
+for i in range(len(all_paths)):
+    j = all_paths[i]
+    print('==============')
+    print('path = ' + str(i))
+    ## open an empty list to store the similarity or lomap scores
+    sim = []
+    sim.clear()
+    for n in range(0, len(j)):
+        first_value = j[n]
+        if n + 1 < len(j):
+           second_value = j[n+1]
+           sim.append((nx_graph.get_edge_data(first_value, second_value).get('similarity')))
+        else:
+            None
+    poor_lomap = [y for y in sim if y < cutoff]
+    if len(poor_lomap) > 1:
+        None
+       # print("----------------")
+    else:
+        all_paths_new.append(j)
+        print(sim)
+#        print('node 1 = ' + str(first_value) + ', node 2 = ' + str(second_value))
+#        print(nx_graph.get_edge_data(first_value, second_value).get('similarity'))
+#        print("============================")
+
+
+
+
+
+
+import math
+final_path = []
+final_path.clear()
+cutoff = 0.4
+for i in range(len(all_paths)):
+    j = all_paths[i]
+    ## open an empty list to store the similarity or lomap scores
+    sim = []
+    sim.clear()
+    for n in range(0, len(j)):
+        first_value = j[n]
+        if n + 1 < len(j):
+           second_value = j[n+1]
+           sim.append((nx_graph.get_edge_data(first_value, second_value).get('similarity')))
+        else:
+            None
+
+    ## product of all lomap scores in a given path
+    lomap_prod = math.prod(sim)
+    ## length of a given path
+    path_length = len(j) - 1
+    ## arbitrary constant or weight for path length
+    ## decreases with increase in path length
+    c = math.exp(-(path_length))
+
+    final_score = lomap_prod * c * path_length
+    print('path = '  + str(j))
+    print(round(final_score,2))
+    final_path.append(round(final_score,5))
+    print('--------------------')

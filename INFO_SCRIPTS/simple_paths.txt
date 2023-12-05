@@ -1,0 +1,13 @@
+
+all_paths = list(nx.all_simple_paths(G, source=1, target=4, cutoff=4))
+
+
+In [55]: for paths in range(len(all_paths)):
+    ...:     pathGraph = nx.path_graph(all_paths[paths])
+    ...:     print(pathGraph.number_of_edges())
+    ...:     weights = []
+    ...:     weights.clear()
+    ...:     for ea in pathGraph.edges():
+    ...:         #print(ea, G.edges[ea[0], ea[1]]['weight'])
+    ...:         weights.append(G.edges[ea[0], ea[1]]['weight'])
+    ...:     print('final score: ' + str(sum(weights) / pathGraph.number_of_edges()))

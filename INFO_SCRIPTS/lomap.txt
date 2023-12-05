@@ -1,0 +1,31 @@
+LOMAP
+
+strict, loose = db_mol.build_matrices()
+nx_graph = db_mol.build_graph()
+
+strict[0]
+loose[0]
+nx_graph[0]
+nx_graph. => shows variuos options
+nx_graph.number_of_edges()
+
+for i in range(nx_graph.number_of_edges()):
+    ...:      print(nx_graph[i])
+
+nx_graph.edges
+nx_graph.edges.data('similarity')
+
+junk_data = nx_graph.edges.data('similarity')
+list(junk_data)[0]
+
+list(junk_data)[0:-1]
+list(junk_data)[0][2] ##=> similarity score assocaited with compounds at index 0 in the list
+
+comp1, comp2, sim = list(junk_data)[0]
+
+for i in range(nx_graph.number_of_edges()):
+    print(list(junk_data)[i])
+
+
+
+

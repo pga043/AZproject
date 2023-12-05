@@ -1,0 +1,16 @@
+ #mol_3d = Chem.AllChem.EmbedMolecule(mol, randomSeed=0xf00d)
+    #display(mol)
+    #mol_confs = Chem.MolToMolBlock(mol, includeStereo=True, confId=-1, kekulize=True, forceV3000=True)
+    #with Chem.SDWriter('junk/junk.sdf') as w:
+
+    
+    #writer = Chem.SDWriter('junk/junk.sdf')
+    #for confId in mol_confs:
+    #    Chem.AllChem.UFFOptimizeMolecule(mol_confs, confId=confId)
+    #    # write to output file
+    #    writer.write(mol_confs, confId=confId)
+
+
+#sdfFile = open('junk/junk.sdf', 'a')
+#sdf = Chem.SDWriter(sdfFile)
+#sdf.write(mol)

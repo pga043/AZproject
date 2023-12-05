@@ -1,0 +1,26 @@
+
+In [1]: import netCDF4 as nc
+
+In [2]: import numpy as np
+
+In [3]: import pymbar
+
+In [4]: from pymbar import *
+
+ file = nc.Dataset('simulation.nc')
+
+ file.variables['energies']
+
+# energies are in kT (reduced units)
+
+ u_kn =  file.variables['energies'][0:,0:,0:]
+
+
+for i in range(11):
+   ...:     energy = []
+   ...:     for j in range(11):
+   ...:         energies = file.variables['energies'][0:,j,i]
+   ...:         energy.append(energies.T)
+   ...:     np.savetxt("junk_" + str(i+1) + ".txt", energy)
+
+

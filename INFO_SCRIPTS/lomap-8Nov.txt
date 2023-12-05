@@ -1,0 +1,37 @@
+sp = nx.shortest_path(nx_graph, source=0, target=7, weight='similarity')
+sp
+nx.shortest_path(nx_graph, source=0, weight='similarity')
+list(nx.all_shortest_paths(nx_graph, 0, 7))
+
+sp = nx.shortest_path(nx_graph, source=0, target=7, weight='weight')
+
+nx.dijkstra_path(nx_graph, source=0, target=7, weight='weight')
+nx.dijkstra_path(nx_graph, source=0, target=7, weight='similarity')
+
+nx.bidirectional_dijkstra(nx_graph, 0, 7, weight='weight')
+nx.bidirectional_dijkstra(nx_graph, 0, 7, weight='similarity')
+
+nx.bellman_ford_path(nx_graph, 0, 7, weight='similarity')
+nx.bellman_ford_path(nx_graph, 0, 7, weight='weight')
+
+nx.astar_path(nx_graph, source=0, target=7, weight='weight')
+nx.astar_path(nx_graph, source=0, target=7, weight='similarity')
+
+
+list(nx.all_simple_paths(nx_graph, 0, 7))
+
+pathGraph = nx.path_graph(sp)
+for ea in pathGraph.edges():
+    print(ea, nx_graph.edges[ea[0], ea[1]])
+
+
+list(nx_graph.nodes(data=True))
+
+list(nx_graph.nodes.data("fname_comp"))
+
+In [36]: for ea in pathGraph.edges():
+    ...:     print(ea, nx_graph.edges[ea[0], ea[1]])
+    ...:     print(nx_graph.nodes[ea[0] + 1]['fname_comp'])
+    ...:     print(nx_graph.nodes[ea[1] + 1]['fname_comp'])
+
+

@@ -1,0 +1,22 @@
+ligands = []
+for f in glob.glob("tmp/*.sdf"):
+    ligands.append(f)
+
+import os, shutil
+maximal_network = []
+for l in range(len(ligands)):
+    if l + 1 < len(ligands):
+        m = l + 1
+        os.makedirs('000', exist_ok=True)
+        shutil.copy(ligands[l], "000/")
+        shutil.copy(ligands[m], "000/")
+        db_mol = lomap.DBMolecules('000/', output=False)
+        strict, loose = db_mol.build_matrices()
+        exec(f'G_{l} = db_mol.build_graph()')
+        exec(f'maximal_network.append(G_{l})')
+        try:
+           shutil.rmtree('000')
+        except OSError as e:
+            print("Error: directory doesn't exists.")
+
+

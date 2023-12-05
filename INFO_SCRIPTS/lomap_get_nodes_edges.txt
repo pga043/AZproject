@@ -1,0 +1,57 @@
+ import pandas as pd
+obj = pd.read_pickle("out.pickle")
+obj. ==> all the functions
+
+strict_numpy = strict.to_numpy_2D_array()
+loose_numpy = loose.to_numpy_2D_array()
+
+print(nx_graph.edges(data=True))
+
+
+db_mol. ==>> see options here
+read
+
+
+import networkx as nx
+paths_between_generator = nx.all_simple_paths(nx_graph,source=0,target=3)
+nodes_between_set = {node for path in paths_between_generator for node in path}
+SG = nx_graph.subgraph(nodes_between_set)
+
+
+def find_all_paths(graph, start, end, path=[]):
+     path = path + [start]
+     if start == end:
+         return [path]
+     if start not in graph:
+         return []
+     paths = []
+     for node in graph[start]:
+         if node not in path:
+             new_paths = find_all_paths(graph, node, end, path)
+             for new_path in new_paths:
+                 paths.append(new_path)
+     return paths
+
+all_paths = find_all_paths(nx_graph, 0, 3)
+
+
+for i in range(len(all_paths)):
+    j = all_paths[i]
+    print('==============')
+    print('path = ' + str(i))
+
+    for n in range(0, len(j)):
+        first_value = j[n]
+        if n + 1 < len(j):
+            second_value = j[n+1]
+           print('node 1 = ' + str(first_value) + ', node 2 = ' + str(second_value))
+           print(nx_graph.get_edge_data(first_value, second_value).get('similarity'))
+            print("============================")
+         else:
+             None
+
+
+nx.shortest_path(nx_graph, 0, 7)
+
+
+

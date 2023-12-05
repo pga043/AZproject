@@ -1,0 +1,21 @@
+import netCDF4 as nc
+file = nc.Dataset('simulation.nc')
+print(file)
+print(file.groups) # Windows and Monte-Carlo move attempts
+print(file.variables)
+file.variables['energies']
+## energy units = kT
+np.asarray(file.variables['energies'])
+np.asarray(file.variables['energies'][0, 0, 0])
+np.asarray(file.variables['energies'][0:, 0, 0])
+
+for i in range(12):
+energies = file.variables['energies'][0:,0,i]
+np.savetxt("junk_" + str(i) + ".txt", energies)
+
+for i in range(30):
+for j in range(30):
+energies = file.variables['energies'][0:,j,i]
+np.savetxt('junk_rep_' + str(j+1) + '_state_' + str(i+1) + '.txt', energies)
+
+

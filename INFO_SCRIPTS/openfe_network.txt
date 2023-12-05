@@ -1,0 +1,69 @@
+## 3D sturctures of ligands needs to be aligned beforehand otherwise scores will be 0.000
+
+In [1]: import lomap
+
+In [2]: import rdkit
+
+In [3]: from rdkit import Chem
+
+In [4]: from rdkit.Chem import AllChem
+
+In [5]: import openfe
+
+In [6]: from openfe import SmallMoleculeComponent
+
+In [7]: import glob
+from openfe.setup.ligand_network_planning import generate_maximal_network
+from openfe.setup import LomapAtomMapper
+
+ligand_mols = []
+In [11]: for f in glob.glob("1-tmp/*.sdf"):
+    ...:     sdf = Chem.SDMolSupplier(f, removeHs=False)
+    ...:     ligand = SmallMoleculeComponent(sdf[0], name=f)
+    ...:     ligand_mols.append(ligand)
+
+scorer = openfe.lomap_scorers.default_lomap_score
+
+network = generate_maximal_network(ligands=ligand_mols[0:],
+                     mappers=[LomapAtomMapper(threed=True, element_change=True),],
+                     scorer = scorer)
+
+G = nx.MultiDiGraph(network.graph)
+
+
+#=========================================
+mapper = openfe.LomapAtomMapper(max3d=1.0, element_change=False)
+scorer = openfe.lomap_scorers.default_lomap_score
+network_planner = openfe.ligand_network_planning.generate_maximal_network
+
+ligand_network = network_planner(
+ligands=ligand_mols[0:],
+     mappers=[mapper],
+     scorer=scorer
+)
+
+
+mapper = openfe.LomapAtomMapper(threed=True, element_change=False)
+mapper = openfe.LomapAtomMapper(threed=True, element_change=True)
+
+In [43]: for edge in ligand_network.edges:
+    ...:     print(edge.componentA.name, edge.componentB.name)
+
+In [52]: for edge in ligand_network.edges:
+    ...:     print(edge.annotations['score'])
+
+
+sdfs = Chem.SDMolSupplier('aligned_0.sdf', removeHs=False)
+ligands = [SmallMoleculeComponent(sdf, name='junk') for sdf in sdfs]
+ligands = [SmallMoleculeComponent(sdf) for sdf in sdfs]
+
+nodes = list(ligand_network.nodes)
+
+sp = nx.shortest_path(ligand_network.graph, source=nodes[0], target=nodes[2], weight='score')
+
+G = nx.Graph()
+G.add_nodes_from(nodes)
+for edge in ligand_network.edges:
+    ...:     G.add_edge(edge.componentA.name, edge.componentB.name, weight=edge.annotations['score'])
+
+

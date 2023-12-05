@@ -1,0 +1,11 @@
+ ssh kvnq006@wks-df0b36.seml.astrazeneca.net
+
+ ## mobaxterm home path => C:/Users/kvnq006/
+ ## 
+
+## mobaxterm bash shell is used to connect to scp and workstation
+## wsl ubuntu is used for analysis/visualizing
+## wsl ubuntu cannot access internet (I don't know why?)
+
+
+

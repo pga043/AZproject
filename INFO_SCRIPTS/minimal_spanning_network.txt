@@ -1,0 +1,34 @@
+## minimal spanning network
+
+import glob
+
+ligands = []
+In [12]: for f in glob.glob("malt1/junk/*.sdf"):
+    ...:     tmp = Chem.SDMolSupplier(f, removeHs=False)
+    ...:     ligands.append(tmp[0])
+
+
+ligs = [openfe.SmallMoleculeComponent.from_rdkit(mol) for mol in ligands]
+
+from openfe.setup.ligand_network_planning import generate_maximal_network
+from openfe.setup.ligand_network_planning import generate_minimal_spanning_network
+scorer = openfe.lomap_scorers.default_lomap_score
+
+maxnet = generate_maximal_network(ligands=ligs, mappers=[LomapAtomMapper(threed=True, element_change=True)]. scorer=scorer)
+
+maxnet.graph.nodes()
+maxnet.graph.edges(data=True)
+
+
+#------------------------------------
+import lomap
+import rdkit
+from rdkit import Chem
+
+'''
+This will attempt to create (and optionally score) all possible mappings
+    (up to :math:`N(N-1)/2` for each mapper given). There may be fewer actual
+    mappings that this because, when a mapper cannot return a mapping for a
+    given pair, there is simply no suggested mapping for that pair.
+'''
+

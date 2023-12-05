@@ -1,0 +1,18 @@
+ for key, value in nx.get_node_attributes(nx_graph, 'fname_comp').items():
+     if 'parent_1.sdf' == value:
+         node1 = key
+     if 'parent_2.sdf' == value:
+         node2 = key
+
+sp = nx.shortest_path(nx_graph, source=node1, target=node2, weight='weight')
+pathGraph = nx.path_graph(sp)
+
+list(nx_graph.nodes(data=True))
+
+ for ea in pathGraph.edges():
+     print(ea, nx_graph.edges[ea[0], ea[1]])
+     print(nx_graph.nodes[ea[0]]['fname_comp'])
+     print(nx_graph.nodes[ea[1]]['fname_comp'])
+
+In [49]: for ea in pathGraph.edges():
+    ...:     print(ea, G.edges[ea[0], ea[1]]['weight'])
