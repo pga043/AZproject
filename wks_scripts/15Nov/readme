@@ -1,0 +1,33 @@
+#!/bin/bash
+
+export sys=bace1
+
+END=17 #`ls -lrt *.sdf | wc -l`
+for((i=0;i<=END;i++))
+do
+export j=`expr "$i" + 1`
+
+for k in `seq "$j" 1 "$END"`
+do
+echo $i $k
+
+
+mkdir -p junk_"$i"_"$k"
+mkdir -p junk_"$i"_"$k"/tmp
+mkdir -p junk_"$i"_"$k"/1-tmp
+
+cd junk_"$i"_"$k"
+python ../../frags_lomap.py ../"$sys"_"$i".sdf ../"$sys"_"$k".sdf >> output.txt
+
+cd ../
+
+
+done
+done
+
+
+#cat output.txt | grep -i paths | awk '{print $4}' | sed -e '$ d'
+
+#
+
+
