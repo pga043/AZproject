@@ -30,8 +30,8 @@ This jupyter notebook performs the following tasks:
 9. write out sdf files for each pair and it's corresponding shortest path.
 
 
-Output directories or files:
-a. frags : fragments from RDKit
-b. fromLomap : Lomap edges with good scores, aligned to a given reference structure.
+Output directories or files: \
+a. frags : fragments from RDKit \
+b. fromLomap : Lomap edges with good scores, aligned to a given reference structure. \
 c. forOpenfe : Lomap edges with bad scores and their fragments, all aligned to a given reference structure.
 
