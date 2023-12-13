@@ -22,6 +22,14 @@ from openfe import SmallMoleculeComponent
 
 ##=============================================================
 ##*************************************************************
+
+if len(sys.argv) !=4:
+   print('Three command line options are required.')
+   print('Usage: python lomap_and_openfe.py input_dir_containing_sdfs reference_mol_for_alignment.sdf output_dir')
+   print('Exiting...')
+   quit()
+
+
 input_dir = sys.argv[1]   ## input directory containing sdf files
 ref_mol   = sys.argv[2]   ## reference molecule for alignment
 work_dir  = sys.argv[3]   ## working directory to save output files
