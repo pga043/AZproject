@@ -35,7 +35,12 @@ Output directories or files:
 a. frags : fragments from RDKit
 b. fromLomap : Lomap edges with good scores, aligned to a given reference structure.
 c. forOpenfe : Lomap edges with bad scores and their fragments, all aligned to a given reference structure.
+
+Parveen Gartan
+AstraZeneca Gothenburg
+13 Dec 2023
 '''
+
 ##*************************************************************
 ##==============================================================
 
